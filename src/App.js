@@ -12,22 +12,36 @@ class App extends Component {
     this.state = {
       products: []
     }
+    this.setResults = this.setResults.bind(this);
   }
+
   componentDidMount() {
     axios.get('/products').then(res => {
-      this.setState({ products: res.data })
+      this.setResults(res.data);
     })
   }
+
+  setResults(data) {
+    this.setState({ products: data})
+  }
+
   render() {
     let mappedProducts = this.state.products.map(item => {
       return (
         <Product key={item.id} item={item}/>
       )
     })
+    let amountOfItems = 0;
+    if (mappedProducts) {
+      amountOfItems = mappedProducts.length
+    }
     return (
       <div className="App">
-        <Header />
+        <Header setResults={this.setResults}/>
         <section id="section-wrapper">
+        <div id="item-counter">
+          ITEMS: {amountOfItems}
+        </div>
         {mappedProducts}
         </section>
       </div>

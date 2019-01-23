@@ -2,3 +2,27 @@
  display: flex;
  flex-wrap: wrap;
 }
+input, button {
+ font-size: 20px;
+ margin: 1%;
+}
+button {
+ cursor: pointer;
+}
+.search-wrapper {
+ width: 50%;
+}
+.outer-wrapper {
+ width: 70%;
+ display: flex;
+ justify-content: flex-end;
+}
+#item-counter {
+ height: 100px;
+ width: 100px;
+ position: fixed;
+ bottom: 50%;
+ right: 20px;
+ background-color: teal;
+ padding: 10px;
+}
