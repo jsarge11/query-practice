@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './reset.css'
+import './css/global.css'
+import Header from './components/Header/Header';
+import axios from 'axios'
+import Product from './components/Product/Product';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: []
+    }
+  }
+  componentDidMount() {
+    axios.get('/products').then(res => {
+      this.setState({ products: res.data })
+    })
+  }
   render() {
+    let mappedProducts = this.state.products.map(item => {
+      return (
+        <Product key={item.id} item={item}/>
+      )
+    })
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header />
+        <section id="section-wrapper">
+        {mappedProducts}
+        </section>
       </div>
     );
   }
