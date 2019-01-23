@@ -1,3 +1,2 @@
 # Query Practice
-### 1 
-Fork, Clone and NPM i
+> * Fork, Clone and npm install
